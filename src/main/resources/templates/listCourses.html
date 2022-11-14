@@ -18,14 +18,16 @@
     <h3 style="color: maroon" th:text="${error}"></h3>
     <h2>Choose course:</h2>
     <form th:method="POST" th:action="@{/courses}" th:id="pick">
-        <th:block th:each="course : ${courses}">
-            <input type="radio" name="courseId" th:value="${course.id}" th:text="${course.name}">
-            <br/>
-            <a th:href="@{'/courses/edit-form/{id}' (id=${course.id})}">Edit</a> &emsp;
-            <form th:method="POST" th:action="@{'/courses/delete/{id}' (id=${course.id})}" th:id="${course.id}">
-                <button type="submit" name="Delete" th:form="${course.id}">Delete</button>
-            </form>
-        </th:block>
+        <ul style="list-style-type:none">
+            <li th:each="course : ${courses}">
+                <input type="radio" name="courseId" th:value="${course.id}" th:text="${course.name}">
+                <br/>
+                &emsp; <a th:href="@{'/courses/edit-form/{id}' (id=${course.id})}">Edit</a>
+                <form th:method="POST" th:action="@{'/courses/delete/{id}' (id=${course.id})}" th:id="${course.id}">
+                    <button type="submit" name="Delete" th:form="${course.id}">Delete</button>
+                </form>
+            </li>
+        </ul>
         <br/>
 
         <button type="submit" name="Submit" th:form="pick">Submit</button>

@@ -11,6 +11,7 @@ import mk.ukim.finki.wp.lab.repository.TeacherRepository;
 import mk.ukim.finki.wp.lab.service.CourseService;
 import org.springframework.stereotype.Service;
 
+import java.util.Comparator;
 import java.util.List;
 
 @Service
@@ -41,7 +42,7 @@ public class CourseServiceImpl implements CourseService{
 
     @Override
     public List<Course> listAll(){
-        return courseRepository.findAllCourses();
+        return courseRepository.findAllCourses().stream().sorted(Comparator.comparing(Course::getName)).toList();
     }
 
     @Override
