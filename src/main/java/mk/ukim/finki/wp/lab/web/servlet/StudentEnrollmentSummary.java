@@ -25,10 +25,10 @@ public class StudentEnrollmentSummary extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         WebContext context = new WebContext(req, resp, req.getServletContext());
-        String courseId = req.getSession().getAttribute("courseId").toString();
+        Long courseId = (Long) req.getSession().getAttribute("courseId");
         Course c = courseService.findById(courseId);
         context.setVariable("course", c.getName());
-        context.setVariable("students", courseService.listStudentsByCourse(Long.valueOf(courseId)));
+        context.setVariable("students", courseService.listStudentsByCourse(courseId));
         this.springTemplateEngine.process("studentsInCourse.html",context,resp.getWriter());
     }
 

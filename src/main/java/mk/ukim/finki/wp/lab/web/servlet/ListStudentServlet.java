@@ -25,16 +25,16 @@ public class ListStudentServlet extends HttpServlet{
     }
 
     @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException{
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException{
         WebContext context = new WebContext(req,resp,req.getServletContext());
-        context.setVariable("students",studentService.listAll());
-        String courseId = (String)req.getSession().getAttribute("courseId");
+        context.setVariable("students",this.studentService.listAll());
+        Long courseId = (Long) req.getSession().getAttribute("courseId");
         context.setVariable("courseId",courseId);
         this.springTemplateEngine.process("listStudents.html",context,resp.getWriter());
     }
 
     @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException{
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException{
         String username = req.getParameter("username");
         String courseId = req.getSession().getAttribute("courseId").toString();
         courseService.addStudentInCourse(username, Long.valueOf(courseId));

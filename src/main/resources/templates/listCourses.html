@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://thymeleaf.org">
 <head>
     <meta charset="utf-8">
     <title>Welcome and Choose a Course</title>
@@ -15,16 +15,23 @@
     <h1>Courses List</h1>
 </header>
 <main>
+    <h3 style="color: maroon" th:text="${error}"></h3>
     <h2>Choose course:</h2>
-    <form method="post" action="/listCourses">
-    <label th:each="course: ${courses}">
-        <input type="radio" name="courseId" th:attr="value = ${course.courseId}"><th:block th:text=" ${course.name}"/>
+    <form th:method="POST" th:action="@{/courses}" th:id="pick">
+        <th:block th:each="course : ${courses}">
+            <input type="radio" name="courseId" th:value="${course.id}" th:text="${course.name}">
+            <br/>
+            <a th:href="@{'/courses/edit-form/{id}' (id=${course.id})}">Edit</a> &emsp;
+            <form th:method="POST" th:action="@{'/courses/delete/{id}' (id=${course.id})}" th:id="${course.id}">
+                <button type="submit" name="Delete" th:form="${course.id}">Delete</button>
+            </form>
+        </th:block>
         <br/>
-    </label>
 
-        <br/>
-        <input type="submit" value="Submit">
+        <button type="submit" name="Submit" th:form="pick">Submit</button>
     </form>
+    <br/>
+    <a th:href="@{'/courses/add-form/'}">Add course</a>
 </main>
 </body>
 </html>

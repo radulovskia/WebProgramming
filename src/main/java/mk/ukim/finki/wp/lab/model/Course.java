@@ -4,18 +4,21 @@ import lombok.Data;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 @Data
 public class Course{
-    private Long courseId;
+    private Long id;
     private String name;
     private String description;
+    private Teacher teacher;
     private List<Student> students;
 
-    public Course(Long courseId, String name, String description){
-        this.courseId = courseId;
+    public Course(String name, String description, Teacher teacher){
+        this.id = new Random().nextLong(10000);
         this.name = name;
         this.description = description;
+        this.teacher = teacher;
         this.students = new ArrayList<>();
     }
 }
