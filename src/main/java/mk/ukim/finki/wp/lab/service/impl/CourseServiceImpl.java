@@ -1,7 +1,6 @@
 package mk.ukim.finki.wp.lab.service.impl;
 
 import mk.ukim.finki.wp.lab.exceptions.CourseAlreadyExistsException;
-import mk.ukim.finki.wp.lab.exceptions.CourseNotFoundException;
 import mk.ukim.finki.wp.lab.model.Course;
 import mk.ukim.finki.wp.lab.model.Student;
 import mk.ukim.finki.wp.lab.model.Teacher;
