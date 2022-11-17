@@ -13,6 +13,6 @@ public interface CourseService{
     void addStudentInCourse(String username, Long courseId);
     Course findById(Long courseId);
     void addCourse(String name, String description, Long teacherId) throws CourseAlreadyExistsException;
-    void editCourse(String name, String description, Long teacherId, Long courseId) throws CourseNotFoundException;
+    void editCourse(String name, String description, Long teacherId, Long courseId);
     void deleteCourse(Long courseId);
 }

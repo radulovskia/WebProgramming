@@ -61,8 +61,7 @@ public class CourseController{
 
     @PostMapping({"add"})
     public String saveCourse(@RequestParam String name, @RequestParam String description,
-                             @RequestParam Long teacherId, @RequestParam(required = false) Long editCourseId)
-            throws CourseAlreadyExistsException, CourseNotFoundException{
+                             @RequestParam Long teacherId, @RequestParam(required = false) Long editCourseId){
         if(editCourseId == null)
             try{
                 this.courseService.addCourse(name, description, teacherId);
