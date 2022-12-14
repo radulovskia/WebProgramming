@@ -40,6 +40,12 @@
             <th:block th:text="${student.name} + ' ' + ${student.surname}"></th:block> <br/>
         </div>
         <br/>
+        <label for="dateTime">Date: </label>
+        <input type="datetime-local" name="dateTime" id="dateTime"/>
+        <br/>
+        <label for="grade">Grade: </label>
+        <input type="text" id="grade" name="grade"/>
+        <br/>
         <input type="submit" value="Submit">
     </form>
 </section>

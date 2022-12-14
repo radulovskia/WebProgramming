@@ -1,7 +1,7 @@
 package mk.ukim.finki.wp.lab.service.impl;
 
 import mk.ukim.finki.wp.lab.model.Student;
-import mk.ukim.finki.wp.lab.repository.StudentRepository;
+import mk.ukim.finki.wp.lab.repository.jpa.StudentRepository;
 import mk.ukim.finki.wp.lab.service.StudentService;
 import org.springframework.stereotype.Service;
 
@@ -18,18 +18,17 @@ public class StudentServiceImpl implements StudentService{
 
     @Override
     public List<Student> listAll(){
-        return studentRepository.findAllStudents();
+        return studentRepository.findAll().stream().sorted().toList();
     }
 
     @Override
     public List<Student> searchByNameOrSurname(String text){
-        return studentRepository.findAllByNameOrSurname(text);
+        return studentRepository.findAllByNameOrSurname(text,text);
     }
 
     @Override
     public Student save(String username, String password, String name, String surname){
-        //should this logic go here or in repository
         Student student = new Student(username,password,name,surname);
-        return studentRepository.addStudent(student);
+        return studentRepository.save(student);
     }
 }

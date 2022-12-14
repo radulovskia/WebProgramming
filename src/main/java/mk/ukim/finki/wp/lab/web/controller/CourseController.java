@@ -1,9 +1,9 @@
 package mk.ukim.finki.wp.lab.web.controller;
 
 import mk.ukim.finki.wp.lab.exceptions.CourseAlreadyExistsException;
-import mk.ukim.finki.wp.lab.exceptions.CourseNotFoundException;
 import mk.ukim.finki.wp.lab.model.Course;
 import mk.ukim.finki.wp.lab.model.Teacher;
+import mk.ukim.finki.wp.lab.model.enumerations.Type;
 import mk.ukim.finki.wp.lab.service.CourseService;
 import mk.ukim.finki.wp.lab.service.TeacherService;
 import org.springframework.stereotype.Controller;
@@ -61,16 +61,17 @@ public class CourseController{
 
     @PostMapping({"add"})
     public String saveCourse(@RequestParam String name, @RequestParam String description,
-                             @RequestParam Long teacherId, @RequestParam(required = false) Long editCourseId){
+                             @RequestParam Long teacherId, @RequestParam(required = false) Long editCourseId,
+                             @RequestParam Type type){
         if(editCourseId == null)
             try{
-                this.courseService.addCourse(name, description, teacherId);
+                this.courseService.addCourse(name, description, teacherId, type);
             }
             catch(CourseAlreadyExistsException e){
                 return "redirect:/courses/add-form?error=" + e.getMessage();
             }
         else
-            this.courseService.editCourse(name, description, teacherId, editCourseId);
+            this.courseService.editCourse(name, description, teacherId, editCourseId, type);
         return "redirect:/listCourses";
     }
 

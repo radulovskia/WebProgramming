@@ -3,6 +3,7 @@ package mk.ukim.finki.wp.lab.web.servlet;
 import mk.ukim.finki.wp.lab.model.Course;
 import mk.ukim.finki.wp.lab.service.CourseService;
 import org.thymeleaf.context.WebContext;
+import org.thymeleaf.extras.java8time.dialect.Java8TimeDialect;
 import org.thymeleaf.spring5.SpringTemplateEngine;
 
 import javax.servlet.ServletException;
@@ -29,6 +30,7 @@ public class StudentEnrollmentSummary extends HttpServlet {
         Course c = courseService.findById(courseId);
         context.setVariable("course", c.getName());
         context.setVariable("students", courseService.listStudentsByCourse(courseId));
+        context.setVariable("grades", this.courseService.getGradesByCourse(courseId));
         this.springTemplateEngine.process("studentsInCourse.html",context,resp.getWriter());
     }
 

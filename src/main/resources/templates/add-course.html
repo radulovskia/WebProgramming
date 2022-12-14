@@ -16,7 +16,12 @@
     <select name="teacherId" id="teacherId">
         <option th:each="teacher : ${teachers}" th:value="${teacher.id}"
                 th:selected="${course} != null ? ${teacher.id == course.teacher.id} : ''"
-                th:text="${teacher.name + ' ' + teacher.surname}"></option>
+                th:text="${teacher.fullName}"></option>
+    </select>
+    <br/>
+    <select name="type">
+        <option th:each="typeOpt : ${T(mk.ukim.finki.wp.lab.model.enumerations.Type).values()}"
+                th:value="${typeOpt}" th:text="${typeOpt}"></option>
     </select>
     </br>
     <input type="hidden" name="editCourseId" id="editCourseId" th:value="${course} != null ? ${course.id} : ''"/>
