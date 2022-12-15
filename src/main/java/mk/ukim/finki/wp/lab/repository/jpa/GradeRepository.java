@@ -7,6 +7,7 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 public interface GradeRepository extends JpaRepository<Grade,Long>{
+    Grade findByCourse_IdAndStudent_Username(Long id, String username);
     List<Grade> findByCourse_Id(Long id);
     List<Grade> findAllByTimestampBetween(LocalDateTime from, LocalDateTime to);
 }

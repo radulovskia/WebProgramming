@@ -5,7 +5,7 @@ import lombok.NoArgsConstructor;
 import mk.ukim.finki.wp.lab.model.enumerations.Type;
 
 import javax.persistence.*;
-import java.util.List;
+import java.util.Set;
 
 @Data
 @Entity
@@ -21,7 +21,7 @@ public class Course implements Comparable<Course>{
     private Teacher teacher;
 
     @ManyToMany(fetch = FetchType.EAGER)
-    private List<Student> students;
+    private Set<Student> students;
     
     @Enumerated(EnumType.STRING)
     private Type type;

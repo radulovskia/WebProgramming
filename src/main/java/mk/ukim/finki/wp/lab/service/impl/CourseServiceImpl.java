@@ -34,7 +34,7 @@ public class CourseServiceImpl implements CourseService{
 
     @Override
     public List<Student> listStudentsByCourse(Long courseId){
-        return courseRepository.findById(courseId).get().getStudents();
+        return courseRepository.findById(courseId).get().getStudents().stream().toList();
     }
 
     @Override

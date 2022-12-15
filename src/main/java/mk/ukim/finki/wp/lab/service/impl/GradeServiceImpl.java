@@ -30,7 +30,16 @@ public class GradeServiceImpl implements GradeService{
         Student s = studentRepository.findByUsername(username);
         Character gchar = grade.charAt(0);
         LocalDateTime t = LocalDateTime.parse(timestamp);
-        Grade g = new Grade(gchar,s,c,t);
-        gradeRepository.save(g);
+
+        Grade gr = gradeRepository.findByCourse_IdAndStudent_Username(cid,username);
+        if(gr == null){
+            Grade g = new Grade(gchar, s, c, t);
+            gradeRepository.save(g);
+        }
+        else{
+            gr.setGrade(gchar);
+            gr.setTimestamp(t);
+            gradeRepository.save(gr);
+        }
     }
 }
