@@ -16,7 +16,8 @@ public class Teacher{
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Convert(converter = TeacherFullNameConverter.class)
+    //@Convert(converter = TeacherFullNameConverter.class)
+    @Embedded
     private TeacherFullName fullName;
 
     @DateTimeFormat(pattern = "dd-MM-yyyy")

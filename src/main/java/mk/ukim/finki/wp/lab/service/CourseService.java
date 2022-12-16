@@ -11,6 +11,7 @@ import java.util.List;
 public interface CourseService{
     List<Student> listStudentsByCourse(Long courseId);
     List<Course> listAll();
+    List<Course> deepSearchCourses(String text);
     List<Grade> getGradesByCourse(Long courseId);
     Course findById(Long courseId);
     void addStudentInCourse(String username, Long courseId);

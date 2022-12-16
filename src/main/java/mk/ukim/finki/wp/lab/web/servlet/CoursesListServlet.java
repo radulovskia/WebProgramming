@@ -1,6 +1,7 @@
 package mk.ukim.finki.wp.lab.web.servlet;
 
 import mk.ukim.finki.wp.lab.service.CourseService;
+import org.springframework.context.annotation.Profile;
 import org.thymeleaf.context.WebContext;
 import org.thymeleaf.spring5.SpringTemplateEngine;
 
@@ -12,6 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 @WebServlet(name="list-courses-servlet", urlPatterns = "/listCourses")
+@Profile("servlet")
 public class CoursesListServlet extends HttpServlet {
     //dependent on these, constructor-based injection
     private final SpringTemplateEngine springTemplateEngine;

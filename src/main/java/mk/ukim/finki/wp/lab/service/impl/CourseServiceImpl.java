@@ -1,10 +1,7 @@
 package mk.ukim.finki.wp.lab.service.impl;
 
 import mk.ukim.finki.wp.lab.exceptions.CourseAlreadyExistsException;
-import mk.ukim.finki.wp.lab.model.Course;
-import mk.ukim.finki.wp.lab.model.Grade;
-import mk.ukim.finki.wp.lab.model.Student;
-import mk.ukim.finki.wp.lab.model.Teacher;
+import mk.ukim.finki.wp.lab.model.*;
 import mk.ukim.finki.wp.lab.model.enumerations.Type;
 import mk.ukim.finki.wp.lab.repository.jpa.CourseRepository;
 import mk.ukim.finki.wp.lab.repository.jpa.GradeRepository;
@@ -52,6 +49,11 @@ public class CourseServiceImpl implements CourseService{
     }
 
     @Override
+    public List<Course> deepSearchCourses(String text){
+        return courseRepository.findAllByNameContains(text);
+    }
+
+    @Override
     public List<Grade> getGradesByCourse(Long courseId){
         return gradeRepository.findByCourse_Id(courseId);
     }
@@ -90,4 +92,6 @@ public class CourseServiceImpl implements CourseService{
     public void deleteCourse(Long courseId){
         courseRepository.deleteById(courseId);
     }
+
+
 }

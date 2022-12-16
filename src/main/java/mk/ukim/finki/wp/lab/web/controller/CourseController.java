@@ -2,9 +2,11 @@ package mk.ukim.finki.wp.lab.web.controller;
 
 import mk.ukim.finki.wp.lab.exceptions.CourseAlreadyExistsException;
 import mk.ukim.finki.wp.lab.model.Course;
+import mk.ukim.finki.wp.lab.model.Student;
 import mk.ukim.finki.wp.lab.model.Teacher;
 import mk.ukim.finki.wp.lab.model.enumerations.Type;
 import mk.ukim.finki.wp.lab.service.CourseService;
+import mk.ukim.finki.wp.lab.service.StudentService;
 import mk.ukim.finki.wp.lab.service.TeacherService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -19,10 +21,12 @@ public class CourseController{
 
     private final CourseService courseService;
     private final TeacherService teacherService;
+    private final StudentService studentService;
 
-    public CourseController(CourseService courseService, TeacherService teacherService){
+    public CourseController(CourseService courseService, TeacherService teacherService, StudentService studentService){
         this.courseService = courseService;
         this.teacherService = teacherService;
+        this.studentService = studentService;
     }
 
     @GetMapping
@@ -79,5 +83,19 @@ public class CourseController{
     public String deleteCourse(@PathVariable Long id){
         this.courseService.deleteCourse(id);
         return "redirect:/courses";
+    }
+
+    @GetMapping("/search-all")
+    public String getSearchPage(Model model){
+        List<Course> c = courseService.listAll();
+        model.addAttribute("courses",c);
+        return "search";
+    }
+
+    @PostMapping("/search-text")
+    public String search(@RequestParam(required=false) String search, Model model){
+        List<Course> c = courseService.deepSearchCourses(search);
+        model.addAttribute("courses",c);
+        return "search";
     }
 }

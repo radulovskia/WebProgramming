@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Search course</title>
+</head>
+<body>
+
+<form method="post" action="/courses/search-text">
+    <input type="text" name="search"> <input type="submit" value="Search">
+</form>
+
+<div th:if="${course} != null" th:each="course: ${courses}">
+    <label>Course name: </label>
+    <th:block th:text="${course.name}"></th:block> <br/>
+    <label>Description: </label>
+    <th:block th:text="${course.description}"></th:block> </br>
+    <label>Teacher name: </label>
+<!--    <th:block th:text="${course.teacher.fullName.name + ' ' + course.teacher.fullName.surname}"></th:block>-->
+    <th:block th:text="${course.teacher.fullName.toString()}"></th:block>
+    </br>
+    </br>
+</div>
+</body>
+</html>
