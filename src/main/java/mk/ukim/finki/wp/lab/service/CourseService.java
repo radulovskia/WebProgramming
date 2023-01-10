@@ -15,7 +15,7 @@ public interface CourseService{
     List<Grade> getGradesByCourse(Long courseId);
     Course findById(Long courseId);
     void addStudentInCourse(String username, Long courseId);
-    void addCourse(String name, String description, Long teacherId, Type type) throws CourseAlreadyExistsException;
+    Course addCourse(String name, String description, Long teacherId, Type type) throws CourseAlreadyExistsException;
     void editCourse(String name, String description, Long teacherId, Long courseId, Type type);
     void deleteCourse(Long courseId);
 

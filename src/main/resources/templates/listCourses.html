@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://thymeleaf.org">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="utf-8">
     <title>Welcome and Choose a Course</title>
@@ -22,9 +22,9 @@
             <li th:each="course : ${courses}">
                 <input type="radio" name="courseId" th:value="${course.id}" th:text="${course.name}" form="pick">
                 <br/>
-                &emsp; <a th:href="@{'/courses/edit-form/{id}' (id=${course.id})}">Edit</a>
+                &emsp; <a th:href="@{'/courses/edit-form/{id}' (id=${course.id})}" sec:authorize="hasRole('ROLE_ADMIN')">Edit</a>
                 <form th:method="POST" th:action="@{'/courses/delete/{id}' (id=${course.id})}" th:id="${course.id}">
-                    <button type="submit" name="Delete" th:form="${course.id}">Delete</button>
+                    <button class="del" type="submit" name="Delete" th:form="${course.id}" sec:authorize="hasRole('ROLE_ADMIN')">Delete</button>
                 </form>
             </li>
         </ul>

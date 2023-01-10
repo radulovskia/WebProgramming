@@ -65,16 +65,20 @@ public class CourseServiceImpl implements CourseService{
     }
 
     @Override
-    public void addCourse(String name, String description, Long teacherId, Type type) throws CourseAlreadyExistsException{
+    public Course addCourse(String name, String description, Long teacherId, Type type) throws CourseAlreadyExistsException{
         if(courseRepository.existsByName(name))
             throw new CourseAlreadyExistsException(name);
-        Teacher t = teacherRepository.findById(teacherId).orElseThrow();
+        Teacher t = null;
+        if(teacherId != 0){
+            t = teacherRepository.findById(teacherId).orElseThrow();
+        }
         Course c = new Course();
         c.setName(name);
         c.setDescription(description);
         c.setTeacher(t);
         c.setType(type);
         courseRepository.save(c);
+        return c;
     }
 
     @Override

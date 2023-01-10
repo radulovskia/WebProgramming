@@ -7,6 +7,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.Random;
 
 @Data
 @Entity
@@ -22,4 +23,11 @@ public class Teacher{
 
     @DateTimeFormat(pattern = "dd-MM-yyyy")
     private LocalDate dateOfEmployment;
+
+    public Teacher(String name, String surname) {
+        Random random = new Random();
+        this.id = random.nextLong(1000000000);
+        this.fullName = new TeacherFullName(name, surname);
+        this.dateOfEmployment = LocalDate.now();
+    }
 }

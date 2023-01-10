@@ -33,7 +33,7 @@
 </header>
 <section>
     <h2>Select the student to enroll:</h2>
-    <a href='/createStudent' type='button'>Create New Student</a> <br/> <br/>
+    <a href='/createStudent' type='button' sec:authorize="hasRole('ROLE_ADMIN')">Create New Student</a> <br/> <br/>
     <form method="post" action="/addStudent">
         <div th:each="student: ${students}">
             <input type="radio" name="username" th:attr="value = ${student.username}">
