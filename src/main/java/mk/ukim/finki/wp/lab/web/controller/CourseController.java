@@ -76,7 +76,7 @@ public class CourseController{
             }
         else
             this.courseService.editCourse(name, description, teacherId, editCourseId, type);
-        return "redirect:/listCourses";
+        return "redirect:/courses";
     }
 
     @PostMapping("/delete/{id}")

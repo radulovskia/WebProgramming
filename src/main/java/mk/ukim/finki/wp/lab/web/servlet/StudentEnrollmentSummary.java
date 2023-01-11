@@ -31,6 +31,7 @@ public class StudentEnrollmentSummary extends HttpServlet {
         context.setVariable("course", c.getName());
         context.setVariable("students", courseService.listStudentsByCourse(courseId));
         context.setVariable("grades", this.courseService.getGradesByCourse(courseId));
+        resp.setHeader("Content-Type", "text/html;charset=UTF-8");
         this.springTemplateEngine.process("studentsInCourse.html",context,resp.getWriter());
     }
 

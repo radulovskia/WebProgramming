@@ -25,6 +25,7 @@ public class CreateStudentServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         WebContext context = new WebContext(req,resp,req.getServletContext());
+        resp.setHeader("Content-Type", "text/html;charset=UTF-8");
         this.springTemplateEngine.process("studentCreation.html",context,resp.getWriter());
     }
 

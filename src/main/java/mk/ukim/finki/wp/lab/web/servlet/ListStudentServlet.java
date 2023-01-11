@@ -33,6 +33,7 @@ public class ListStudentServlet extends HttpServlet{
         context.setVariable("students",this.studentService.listAll());
         Long courseId = (Long) req.getSession().getAttribute("courseId");
         context.setVariable("courseId",courseId);
+        resp.setHeader("Content-Type", "text/html;charset=UTF-8");
         this.springTemplateEngine.process("listStudents.html",context,resp.getWriter());
     }
 
