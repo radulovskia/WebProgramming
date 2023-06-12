@@ -31,7 +31,7 @@
         <br/>
         <button type="submit" name="Submit" form="pick">Submit</button>
     <br/>
-    <a th:href="@{'/courses/add-form/'}">Add course</a>
+    <a th:href="@{'/courses/add-form/'}" sec:authorize="hasRole('ROLE_ADMIN')">Add course</a>
 </main>
 </body>
 </html>
