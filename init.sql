@@ -53,11 +53,13 @@ create table if not exists grade
 
 alter table grade owner to postgres;
 
+delete from teacher;
 insert into teacher values
 (1, '2022-12-12', 'Teacher teacher1', 'Teacher', 'teacher1'),
 (2, '2022-12-01', 'Teacher teacher2', 'Teacher', 'teacher2'),
 (3, '2021-12-03', 'Teacher teacher3', 'Teacher', 'teacher3');
 
+delete from student;
 insert into student values
 ('ar', 'Aleksandar', 'ar123', 'Radulovski'),
 ('ss', 'Stole', 'ss123', 'Stolevski'),
@@ -67,18 +69,21 @@ insert into student values
 ('kk', 'Kole', 'kk123', 'Kolevski'),
 ('dd', 'Doncho', 'dd123', 'Donchovski');
 
+delete from course;
 insert into course values
 (4, 'os description', 'Operating Systems', 'SUMMER', 2),
 (5, 'is description', 'Information Security', 'WINTER', 3),
 (6, 'data science desc', 'Data Science', 'WINTER', 3),
 (1, 'ap description', 'Advanced Programming', 'WINTER', 1);
 
+delete from course_students;
 insert into course_students values
 (1, 'ss'), (1, 'mm'), (1, 'pp'), (1, 'jj'), (4, 'kk'),
 (4, 'dd'), (4, 'ar'), (4, 'pp'), (4, 'jj'), (5, 'ss'),
 (5, 'kk'), (5, 'dd'), (5, 'pp'), (5, 'ar'), (5, 'jj'),
 (6, 'dd'), (6, 'kk'), (6, 'pp'), (6, 'ar'), (6, 'ss');
 
+delete from grade;
 insert into grade values
 (19, 'A', '2022-12-04 23:32:55', 1, 'ss'),
 (42, 'A', '2023-06-08 20:05:00', 5, 'jj'),
