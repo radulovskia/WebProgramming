@@ -1,60 +1,66 @@
-CREATE SEQUENCE hibernate_sequence;
+create sequence hibernate_sequence;
 
-CREATE TABLE IF NOT EXISTS student
+alter sequence hibernate_sequence owner to postgres;
+
+create table if not exists student
 (
-    username varchar(255) NOT NULL PRIMARY KEY,
-    name varchar(255) NOT NULL,
-    password varchar(255) NOT NULL,
-    surname varchar(255) NOT NULL
+    username varchar(255) not null primary key,
+    name varchar(255) not null,
+    password varchar(255) not null,
+    surname varchar(255) not null
 );
 
-CREATE TABLE IF NOT EXISTS teacher
+alter table student owner to postgres;
+
+create table if not exists teacher
 (
-    id bigserial NOT NULL PRIMARY KEY,
-    date_of_employment date NOT NULL,
-    full_name varchar(255) NOT NULL,
-    name varchar(255) NOT NULL,
-    surname varchar(255) NOT NULL
+    id bigserial not null primary key,
+    date_of_employment date not null,
+    full_name varchar(255) not null,
+    name varchar(255) not null,
+    surname varchar(255) not null
 );
 
-CREATE TABLE IF NOT EXISTS course
+alter table teacher owner to postgres;
+
+create table if not exists course
 (
-    id bigserial NOT NULL PRIMARY KEY,
-    description varchar(255) NOT NULL,
-    name varchar(255) NOT NULL,
-    type varchar(255) NOT NULL,
-    teacher_id bigint NOT NULL,
-    CONSTRAINT fksybhlxoejr4j3teomm5u2bx1n FOREIGN KEY (teacher_id) REFERENCES teacher (id)
+    id bigserial not null primary key,
+    description varchar(255) not null,
+    name varchar(255) not null,
+    type varchar(255) not null,
+    teacher_id bigint not null constraint fksybhlxoejr4j3teomm5u2bx1n references teacher
 );
 
-CREATE TABLE IF NOT EXISTS course_students
+alter table course owner to postgres;
+
+create table if not exists course_students
 (
-    course_id bigint NOT NULL,
-    students_username varchar(255) NOT NULL,
-    PRIMARY KEY (course_id, students_username),
-    CONSTRAINT fkgut5xj4l8sk6hg3l0t2su2pnc FOREIGN KEY (course_id) REFERENCES course (id),
-    CONSTRAINT fk4mv6re6i7tgxk3bpn4euubs44 FOREIGN KEY (students_username) REFERENCES student (username)
+    course_id bigint not null constraint fkgut5xj4l8sk6hg3l0t2su2pnc references course,
+    students_username varchar(255) not null constraint fk4mv6re6i7tgxk3bpn4euubs44 references student
 );
 
-CREATE TABLE IF NOT EXISTS grade
+alter table course_students owner to postgres;
+
+create table if not exists grade
 (
-    id bigserial NOT NULL PRIMARY KEY,
-    grade char NOT NULL,
-    timestamp timestamp NOT NULL,
-    course_id bigint NOT NULL,
-    student_username varchar(255) NOT NULL,
-    CONSTRAINT fk7e8ca7hfmrpruicqhocskjlf2 FOREIGN KEY (course_id) REFERENCES course (id),
-    CONSTRAINT fk71y9vqtfpm0knhxha8opnadss FOREIGN KEY (student_username) REFERENCES student (username)
+    id bigserial not null primary key,
+    grade char not null,
+    timestamp timestamp not null,
+    course_id bigint not null constraint fk7e8ca7hfmrpruicqhocskjlf2 references course,
+    student_username varchar(255) not null constraint fk71y9vqtfpm0knhxha8opnadss references student
 );
 
-DELETE FROM teacher WHERE 1;
-INSERT INTO teacher VALUES
+alter table grade owner to postgres;
+
+delete from teacher;
+insert into teacher values
 (1, '2022-12-12', 'Teacher teacher1', 'Teacher', 'teacher1'),
 (2, '2022-12-01', 'Teacher teacher2', 'Teacher', 'teacher2'),
 (3, '2021-12-03', 'Teacher teacher3', 'Teacher', 'teacher3');
 
-DELETE FROM student WHERE 1;
-INSERT INTO student VALUES
+delete from student;
+insert into student values
 ('ar', 'Aleksandar', 'ar123', 'Radulovski'),
 ('ss', 'Stole', 'ss123', 'Stolevski'),
 ('pp', 'Petre', 'pp123', 'Petreski'),
@@ -63,22 +69,22 @@ INSERT INTO student VALUES
 ('kk', 'Kole', 'kk123', 'Kolevski'),
 ('dd', 'Doncho', 'dd123', 'Donchovski');
 
-DELETE FROM course WHERE 1;
-INSERT INTO course VALUES
+delete from course;
+insert into course values
 (4, 'os description', 'Operating Systems', 'SUMMER', 2),
 (5, 'is description', 'Information Security', 'WINTER', 3),
 (6, 'data science desc', 'Data Science', 'WINTER', 3),
 (1, 'ap description', 'Advanced Programming', 'WINTER', 1);
 
-DELETE FROM course_students WHERE 1;
-INSERT INTO course_students VALUES
+delete from course_students;
+insert into course_students values
 (1, 'ss'), (1, 'mm'), (1, 'pp'), (1, 'jj'), (4, 'kk'),
 (4, 'dd'), (4, 'ar'), (4, 'pp'), (4, 'jj'), (5, 'ss'),
 (5, 'kk'), (5, 'dd'), (5, 'pp'), (5, 'ar'), (5, 'jj'),
 (6, 'dd'), (6, 'kk'), (6, 'pp'), (6, 'ar'), (6, 'ss');
 
-DELETE FROM grade WHERE 1;
-INSERT INTO grade VALUES
+delete from grade;
+insert into grade values
 (19, 'A', '2022-12-04 23:32:55', 1, 'ss'),
 (42, 'A', '2023-06-08 20:05:00', 5, 'jj'),
 (27, 'A', '2022-12-17 23:45:00', 6, 'ar'),
