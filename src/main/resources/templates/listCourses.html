@@ -16,7 +16,7 @@
 </header>
 <main>
     <h3 style="color: maroon" th:text="${error}"></h3>
-    <h2>Choose course:</h2>
+    <h2>Pick a course:</h2>
     <form th:method="POST" th:action="@{/courses}" id="pick"></form>
         <ul style="list-style-type:none">
             <li th:each="course : ${courses}">
