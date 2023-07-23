@@ -1,4 +1,4 @@
-CREATE SEQUENCE IF NOT EXISTS hibernate_sequence;
+CREATE SEQUENCE hibernate_sequence;
 
 CREATE TABLE IF NOT EXISTS student
 (
