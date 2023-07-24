@@ -1,6 +1,10 @@
-create sequence hibernate_sequence;
+create sequence if not exists teacher_sequence;
+create sequence if not exists course_sequence;
+create sequence if not exists grade_sequence;
 
-alter sequence hibernate_sequence owner to postgres;
+alter sequence teacher_sequence owner to postgres;
+alter sequence course_sequence owner to postgres;
+alter sequence grade_sequence owner to postgres;
 
 create table if not exists student
 (
@@ -55,9 +59,9 @@ alter table grade owner to postgres;
 
 delete from teacher;
 insert into teacher values
-(1, '2022-12-12', 'Teacher teacher1', 'Teacher', 'teacher1'),
-(2, '2022-12-01', 'Teacher teacher2', 'Teacher', 'teacher2'),
-(3, '2021-12-03', 'Teacher teacher3', 'Teacher', 'teacher3');
+(nextval('teacher_sequence'), '2022-12-12', 'Teacher teacher1', 'Teacher', 'teacher1'),
+(nextval('teacher_sequence'), '2022-12-01', 'Teacher teacher2', 'Teacher', 'teacher2'),
+(nextval('teacher_sequence'), '2021-12-03', 'Teacher teacher3', 'Teacher', 'teacher3');
 
 delete from student;
 insert into student values
@@ -71,10 +75,10 @@ insert into student values
 
 delete from course;
 insert into course values
-(4, 'os description', 'Operating Systems', 'SUMMER', 2),
-(5, 'is description', 'Information Security', 'WINTER', 3),
-(6, 'data science desc', 'Data Science', 'WINTER', 3),
-(1, 'ap description', 'Advanced Programming', 'WINTER', 1);
+(nextval('course_sequence'), 'os description', 'Operating Systems', 'SUMMER', 2),
+(nextval('course_sequence'), 'is description', 'Information Security', 'WINTER', 3),
+(nextval('course_sequence'), 'data science desc', 'Data Science', 'WINTER', 3),
+(nextval('course_sequence'), 'ap description', 'Advanced Programming', 'WINTER', 1);
 
 delete from course_students;
 insert into course_students values
@@ -85,19 +89,19 @@ insert into course_students values
 
 delete from grade;
 insert into grade values
-(19, 'A', '2022-12-04 23:32:55', 1, 'ss'),
-(42, 'A', '2023-06-08 20:05:00', 5, 'jj'),
-(27, 'A', '2022-12-17 23:45:00', 6, 'ar'),
-(28, 'A', '2022-12-01 23:47:00', 4, 'jj'),
-(23, 'A', '2022-12-14 23:34:04', 6, 'kk'),
-(29, 'A', '2022-12-08 23:48:00', 4, 'kk'),
-(24, 'B', '2022-12-14 23:34:22', 6, 'ss'),
-(21, 'A', '2022-12-09 23:33:30', 4, 'ar'),
-(35, 'F', '2022-12-15 00:49:00', 1, 'pp'),
-(36, 'C', '2022-12-02 19:15:00', 6, 'dd'),
-(37, 'F', '2022-12-02 19:16:00', 6, 'pp'),
-(33, 'B', '2022-12-09 19:50:00', 5, 'ss'),
-(31, 'B', '2022-12-04 19:50:00', 5, 'ar'),
-(39, 'A', '2022-12-01 13:29:00', 5, 'kk'),
-(40, 'B', '2022-12-30 23:35:00', 4, 'dd'),
-(41, 'A', '2023-01-05 23:38:00', 1, 'mm');
+(nextval('grade_sequence'), 'A', '2022-12-04 23:32:55', 1, 'ss'),
+(nextval('grade_sequence'), 'A', '2023-06-08 20:05:00', 5, 'jj'),
+(nextval('grade_sequence'), 'A', '2022-12-17 23:45:00', 6, 'ar'),
+(nextval('grade_sequence'), 'A', '2022-12-01 23:47:00', 4, 'jj'),
+(nextval('grade_sequence'), 'A', '2022-12-14 23:34:04', 6, 'kk'),
+(nextval('grade_sequence'), 'A', '2022-12-08 23:48:00', 4, 'kk'),
+(nextval('grade_sequence'), 'B', '2022-12-14 23:34:22', 6, 'ss'),
+(nextval('grade_sequence'), 'A', '2022-12-09 23:33:30', 4, 'ar'),
+(nextval('grade_sequence'), 'F', '2022-12-15 00:49:00', 1, 'pp'),
+(nextval('grade_sequence'), 'C', '2022-12-02 19:15:00', 6, 'dd'),
+(nextval('grade_sequence'), 'F', '2022-12-02 19:16:00', 6, 'pp'),
+(nextval('grade_sequence'), 'B', '2022-12-09 19:50:00', 5, 'ss'),
+(nextval('grade_sequence'), 'B', '2022-12-04 19:50:00', 5, 'ar'),
+(nextval('grade_sequence'), 'A', '2022-12-01 13:29:00', 5, 'kk'),
+(nextval('grade_sequence'), 'B', '2022-12-30 23:35:00', 4, 'dd'),
+(nextval('grade_sequence'), 'A', '2023-01-05 23:38:00', 1, 'mm');
