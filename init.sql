@@ -55,9 +55,9 @@ alter table grade owner to postgres;
 
 delete from teacher;
 insert into teacher values
-(nextval('hibernate_sequence'), '2022-12-12', 'Teacher teacher1', 'Teacher', 'teacher1'),
-(nextval('hibernate_sequence'), '2022-12-01', 'Teacher teacher2', 'Teacher', 'teacher2'),
-(nextval('hibernate_sequence'), '2021-12-03', 'Teacher teacher3', 'Teacher', 'teacher3');
+('2022-12-12', 'Teacher teacher1', 'Teacher', 'teacher1'),
+('2022-12-01', 'Teacher teacher2', 'Teacher', 'teacher2'),
+('2021-12-03', 'Teacher teacher3', 'Teacher', 'teacher3');
 
 delete from student;
 insert into student values
@@ -71,10 +71,10 @@ insert into student values
 
 delete from course;
 insert into course values
-(nextval('hibernate_sequence'), 'os description', 'Operating Systems', 'SUMMER', 2),
-(nextval('hibernate_sequence'), 'is description', 'Information Security', 'WINTER', 3),
-(nextval('hibernate_sequence'), 'data science desc', 'Data Science', 'WINTER', 3),
-(nextval('hibernate_sequence'), 'ap description', 'Advanced Programming', 'WINTER', 1);
+('os description', 'Operating Systems', 'SUMMER', 2),
+('is description', 'Information Security', 'WINTER', 3),
+('data science desc', 'Data Science', 'WINTER', 3),
+('ap description', 'Advanced Programming', 'WINTER', 1);
 
 delete from course_students;
 insert into course_students values
@@ -85,19 +85,19 @@ insert into course_students values
 
 delete from grade;
 insert into grade values
-(nextval('hibernate_sequence'), 'A', '2022-12-04 23:32:55', 1, 'ss'),
-(nextval('hibernate_sequence'), 'A', '2023-06-08 20:05:00', 5, 'jj'),
-(nextval('hibernate_sequence'), 'A', '2022-12-17 23:45:00', 6, 'ar'),
-(nextval('hibernate_sequence'), 'A', '2022-12-01 23:47:00', 4, 'jj'),
-(nextval('hibernate_sequence'), 'A', '2022-12-14 23:34:04', 6, 'kk'),
-(nextval('hibernate_sequence'), 'A', '2022-12-08 23:48:00', 4, 'kk'),
-(nextval('hibernate_sequence'), 'B', '2022-12-14 23:34:22', 6, 'ss'),
-(nextval('hibernate_sequence'), 'A', '2022-12-09 23:33:30', 4, 'ar'),
-(nextval('hibernate_sequence'), 'F', '2022-12-15 00:49:00', 1, 'pp'),
-(nextval('hibernate_sequence'), 'C', '2022-12-02 19:15:00', 6, 'dd'),
-(nextval('hibernate_sequence'), 'F', '2022-12-02 19:16:00', 6, 'pp'),
-(nextval('hibernate_sequence'), 'B', '2022-12-09 19:50:00', 5, 'ss'),
-(nextval('hibernate_sequence'), 'B', '2022-12-04 19:50:00', 5, 'ar'),
-(nextval('hibernate_sequence'), 'A', '2022-12-01 13:29:00', 5, 'kk'),
-(nextval('hibernate_sequence'), 'B', '2022-12-30 23:35:00', 4, 'dd'),
-(nextval('hibernate_sequence'), 'A', '2023-01-05 23:38:00', 1, 'mm');
+('A', '2022-12-04 23:32:55', 1, 'ss'),
+('A', '2023-06-08 20:05:00', 5, 'jj'),
+('A', '2022-12-17 23:45:00', 6, 'ar'),
+('A', '2022-12-01 23:47:00', 4, 'jj'),
+('A', '2022-12-14 23:34:04', 6, 'kk'),
+('A', '2022-12-08 23:48:00', 4, 'kk'),
+('B', '2022-12-14 23:34:22', 6, 'ss'),
+('A', '2022-12-09 23:33:30', 4, 'ar'),
+('F', '2022-12-15 00:49:00', 1, 'pp'),
+('C', '2022-12-02 19:15:00', 6, 'dd'),
+('F', '2022-12-02 19:16:00', 6, 'pp'),
+('B', '2022-12-09 19:50:00', 5, 'ss'),
+('B', '2022-12-04 19:50:00', 5, 'ar'),
+('A', '2022-12-01 13:29:00', 5, 'kk'),
+('B', '2022-12-30 23:35:00', 4, 'dd'),
+('A', '2023-01-05 23:38:00', 1, 'mm');
