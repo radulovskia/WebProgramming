@@ -91,5 +91,5 @@ insert into grade (grade, timestamp, course_id, username) values
 ('A', '2022-12-04 23:33:12', (select id from course where name = 'Operating Systems'), 'jj'),
 ('B', '2022-12-04 23:34:55', (select id from course where name = 'Operating Systems'), 'kk'),
 ('A', '2022-12-05 23:42:55', (select id from course where name = 'Computer Networks'), 'kk'),
-('A', '2022-12-05 23:36:55', (select id from course where name = 'Information Security'), 'kk'),
+('A', '2022-12-05 23:36:55', (select id from course where name = 'Information Security'), 'kk')
 on conflict do nothing;
