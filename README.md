@@ -3,8 +3,8 @@ Lab exercises for Web Programming Course 2022/2023
 
 # Modified for DevOps
 Runs with either:
-a) docker compose up 
-b) k3d cluster create <cluster-name> -p "8080:80@loadbalancer"
+- docker compose up 
+- k3d cluster create <cluster-name> -p "8080:80@loadbalancer"
 
 # 'Nice' features to add in the future include:
 - Health probes toward the StatefulSet, to be able to apply all the manifests at once
