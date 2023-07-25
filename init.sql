@@ -86,7 +86,7 @@ insert into course_students values
 on conflict do nothing;
 
 delete from grade;
-insert into grade (grade, timestamp, course_id, username) values
+insert into grade (grade, timestamp, course_id, student_username) values
 ('B', '2022-12-04 23:32:55', (select id from course where name = 'Operating Systems'), 'ss'),
 ('A', '2022-12-04 23:33:12', (select id from course where name = 'Operating Systems'), 'jj'),
 ('B', '2022-12-04 23:34:55', (select id from course where name = 'Operating Systems'), 'kk'),
