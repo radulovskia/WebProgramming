@@ -29,15 +29,15 @@ create table if not exists course
     description varchar(255) not null,
     name varchar(255) not null,
     type varchar(255) not null,
-    teacher_id bigint not null constraint fksybhlxoejr4j3teomm5u2bx1n references teacher(id)
+    teacher_id bigint constraint fksybhlxoejr4j3teomm5u2bx1n references teacher(id) on delete set null
 );
 
 alter table course owner to postgres;
 
 create table if not exists course_students
 (
-    course_id bigint not null constraint fkgut5xj4l8sk6hg3l0t2su2pnc references course(id),
-    students_username varchar(255) not null constraint fk4mv6re6i7tgxk3bpn4euubs44 references student(username)
+    course_id bigint not null constraint fkgut5xj4l8sk6hg3l0t2su2pnc references course(id) on delete cascade,
+    students_username varchar(255) not null constraint fk4mv6re6i7tgxk3bpn4euubs44 references student(username) on delete cascade
 );
 
 alter table course_students owner to postgres;
@@ -47,8 +47,8 @@ create table if not exists grade
     id bigserial not null primary key,
     grade char not null,
     timestamp timestamp not null,
-    course_id bigint not null constraint fk7e8ca7hfmrpruicqhocskjlf2 references course(id),
-    student_username varchar(255) not null constraint fk71y9vqtfpm0knhxha8opnadss references student(username)
+    course_id bigint not null constraint fk7e8ca7hfmrpruicqhocskjlf2 references course(id) on delete cascade,
+    student_username varchar(255) not null constraint fk71y9vqtfpm0knhxha8opnadss references student(username) on delete cascade
 );
 
 alter table grade owner to postgres;
