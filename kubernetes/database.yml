@@ -1,0 +1,74 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: spring-postgres-configmap
+  namespace: springpg
+data:
+  POSTGRES_DB: university
+  POSTGRES_USER: postgres
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: spring-postgres-secret
+  namespace: springpg
+type: Opaque
+data:
+  POSTGRES_PASSWORD: cGFzc3dvcmQ=
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: spring-postgres-pvc
+  namespace: springpg
+  labels:
+    app: postgres
+spec:
+  storageClassName: local-path
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 5Gi
+---
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: spring-postgres
+  namespace: springpg
+spec:
+  serviceName: spring-postgres-service
+  selector:
+    matchLabels:
+      app: postgres
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: postgres
+        namespace: springpg
+    spec:
+      containers:
+        - name: postgres
+          image: postgres:latest
+          envFrom:
+            - configMapRef:
+                name: spring-postgres-configmap
+            - secretRef:
+                name: spring-postgres-secret
+      volumes:
+        - name: spring-postgres-data
+          persistentVolumeClaim:
+            claimName: spring-postgres-pvc
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: spring-postgres-service
+  namespace: springpg
+spec:
+  selector:
+    app: postgres
+  ports:
+    - protocol: TCP
+      port: 5432
