@@ -9,8 +9,18 @@ name: Push-To-Docker
 on:
   push:
     branches: [ "master" ]
+    paths:
+      - 'src/**'
+      - 'Dockerfile'
+      - 'pom.xml'
+      - 'init.sql'
   pull_request:
     branches: [ "master" ]
+    paths:
+      - 'src/**'
+      - 'Dockerfile'
+      - 'pom.xml'
+      - 'init.sql'
 jobs:
   docker:
     runs-on: ubuntu-latest
