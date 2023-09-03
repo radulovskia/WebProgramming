@@ -13,6 +13,11 @@ services:
       - SPRING_DATASOURCE_PASSWORD=password
     ports:
       - "8080:8080"
+    healthcheck:
+      test: [ "CMD", "curl", "-f", "http://localhost:8080/courses" ]
+      interval: 10s
+      timeout: 5s
+      retries: 3
 
   db:
     image: postgres:latest
