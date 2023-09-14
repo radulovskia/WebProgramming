@@ -4,3 +4,10 @@ metadata:
   name: springpg
   labels:
     name: springpg
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: argocd
+  labels:
+    name: argocd
